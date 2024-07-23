@@ -24,9 +24,7 @@ class ItemInfoView: UIView {
     }
     
     private func config() {
-        addSubview(symbolImageView)
-        addSubview(titleLabel)
-        addSubview(countLabel)
+        addSubviews(symbolImageView, titleLabel, countLabel)
         
 //       setAutoLayoutConstraint()
         setSnpConstraints()

@@ -34,12 +34,7 @@ class UserInfoHeaderView: UIView {
     }
     
     func setUI() {
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
-        addSubview(nameLabel)
-        addSubview(locationImageView)
-        addSubview(locationLabel)
-        addSubview(bioLabel)
+        addSubviews(avatarImageView, usernameLabel, nameLabel, locationImageView, locationLabel, bioLabel)
         
 //        setAutoLayoutConstraints()
         setSnpConstraints()

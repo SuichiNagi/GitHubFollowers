@@ -27,8 +27,7 @@ class ItemInfoContentView: UIView {
         layer.cornerRadius = 18
         backgroundColor    = .secondarySystemBackground
         
-        addSubview(stackView)
-        addSubview(actionButton)
+        addSubviews(stackView, actionButton)
         
 //        setAutoLayoutConstraints()
         setSnpConstraints()

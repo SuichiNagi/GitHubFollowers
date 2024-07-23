@@ -52,16 +52,13 @@ class SearchVC: UIViewController {
     func setUI() {
         view.backgroundColor = .systemBackground
         
+        view.addSubviews(logoImageView, usernameTextField, getFollowersButton)
 //        setAutoLayoutConstraint()
         setSnpConstraints()
     }
     
     //Mark: AutoLayoutConstraint
     func setAutoLayoutConstraint() {
-        view.addSubview(logoImageView)
-        view.addSubview(usernameTextField)
-        view.addSubview(getFollowersButton)
-        
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topConstraintConstant),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -82,14 +79,12 @@ class SearchVC: UIViewController {
     
     //Mark: SnapKit
     func setSnpConstraints() {
-        view.addSubview(logoImageView)
         logoImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(topConstraintConstant)
             make.centerX.equalToSuperview()
             make.width.height.equalTo(200)
         }
         
-        view.addSubview(usernameTextField)
         usernameTextField.snp.makeConstraints { make in
             make.top.equalTo(logoImageView.snp.bottom).offset(48)
             make.leading.equalToSuperview().offset(50)
@@ -97,7 +92,6 @@ class SearchVC: UIViewController {
             make.height.equalTo(50)
         }
         
-        view.addSubview(getFollowersButton)
         getFollowersButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-50)
             make.leading.equalToSuperview().offset(50)

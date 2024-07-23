@@ -26,6 +26,7 @@
 		5F8ED8832C248BBE00696303 /* FollowerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8ED8822C248BBE00696303 /* FollowerModel.swift */; };
 		5F8ED8852C248C8300696303 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8ED8842C248C8300696303 /* UserModel.swift */; };
 		5F8ED8882C24910600696303 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8ED8872C24910600696303 /* NetworkManager.swift */; };
+		5F8F811D2C4FC43200B72A04 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8F811C2C4FC43200B72A04 /* UIView+Ext.swift */; };
 		5F91F8B02C2894D300A06A9B /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F91F8AF2C2894D300A06A9B /* UIHelper.swift */; };
 		5F9221602C2CF18D000F0B9C /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92215F2C2CF18D000F0B9C /* ItemInfoView.swift */; };
 		5F97B91D2C351B53004FB404 /* GHFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F97B91C2C351B53004FB404 /* GHFTabBarController.swift */; };
@@ -68,6 +69,7 @@
 		5F8ED8822C248BBE00696303 /* FollowerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerModel.swift; sourceTree = "<group>"; };
 		5F8ED8842C248C8300696303 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5F8ED8872C24910600696303 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5F8F811C2C4FC43200B72A04 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		5F91F8AF2C2894D300A06A9B /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		5F92215F2C2CF18D000F0B9C /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 		5F97B91C2C351B53004FB404 /* GHFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFTabBarController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				5FFFE59E2C2E5F2100AD9190 /* Date+Ext.swift */,
 				5FFFE5A02C2E5F7600AD9190 /* String+Ext.swift */,
 				5F8ED87A2C247A9F00696303 /* UIViewController+Ext.swift */,
+				5F8F811C2C4FC43200B72A04 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				5FFFE59F2C2E5F2100AD9190 /* Date+Ext.swift in Sources */,
 				5FBE2BEF2C30901C0036D9D4 /* PersistenceManager.swift in Sources */,
 				5FA71FEB2C36230300D8D044 /* Constants.swift in Sources */,
+				5F8F811D2C4FC43200B72A04 /* UIView+Ext.swift in Sources */,
 				5F8ED8882C24910600696303 /* NetworkManager.swift in Sources */,
 				5F8ED8772C246BB400696303 /* GHFBodyLabel.swift in Sources */,
 				5F97B91D2C351B53004FB404 /* GHFTabBarController.swift in Sources */,

@@ -39,16 +39,14 @@ class GHFAlertVC: UIViewController {
     func setUI() {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         
+        view.addSubview(containerView)
+        containerView.addSubviews(titleLabel, actionButton, bodyMessageLabel)
+        
 //        setAutoLayoutConstraint()
         setSnpConstraints()
     }
     
     func setAutoLayoutConstraint() {
-        view.addSubview(containerView)
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(actionButton)
-        containerView.addSubview(bodyMessageLabel)
-        
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -73,28 +71,24 @@ class GHFAlertVC: UIViewController {
     }
     
     func setSnpConstraints() {
-        view.addSubview(containerView)
         containerView.snp.makeConstraints { make in
             make.centerY.centerX.equalTo(view)
             make.width.equalTo(280)
             make.height.equalTo(220)
         }
         
-        containerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.leading.equalTo(containerView).offset(padding)
             make.trailing.equalTo(containerView).offset(-padding)
             make.height.equalTo(28)
         }
         
-        containerView.addSubview(actionButton)
         actionButton.snp.makeConstraints { make in
             make.bottom.trailing.equalTo(containerView).offset(-padding)
             make.leading.equalTo(containerView).offset(padding)
             make.height.equalTo(44)
         }
         
-        containerView.addSubview(bodyMessageLabel)
         bodyMessageLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.leading.equalTo(containerView).offset(padding)

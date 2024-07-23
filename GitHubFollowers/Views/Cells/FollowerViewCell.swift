@@ -35,14 +35,13 @@ class FollowerViewCell: UICollectionViewCell {
     }
     
     private func config() {
+        addSubviews(avatarImageView, usernameLabel)
+        
 //        setAutoLayoutConstraints()
         setSnpConstraints()
     }
     
     func setAutoLayoutConstraints() {
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
-        
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
@@ -57,7 +56,6 @@ class FollowerViewCell: UICollectionViewCell {
     }
     
     func setSnpConstraints() {
-        addSubview(avatarImageView)
         avatarImageView.snp.makeConstraints { make in
             make.top.equalTo(self).offset(padding)
             make.leading.equalTo(self).offset(padding)
@@ -65,7 +63,6 @@ class FollowerViewCell: UICollectionViewCell {
             make.height.equalTo(avatarImageView.snp.width)
         }
         
-        addSubview(usernameLabel)
         usernameLabel.snp.makeConstraints { make in
             make.top.equalTo(avatarImageView.snp.bottom).offset(12)
             make.leading.equalTo(self).offset(padding)

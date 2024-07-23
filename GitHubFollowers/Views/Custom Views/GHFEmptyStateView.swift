@@ -27,14 +27,13 @@ class GHFEmptyStateView: UIView {
     }
     
     private func config() {
+        addSubviews(messageLabel, logoImageView)
+        
 //        setAutoLayoutConstraint()
         setSnpConstraints()
     }
     
     private func setAutoLayoutConstraint() {
-        addSubview(messageLabel)
-        addSubview(logoImageView)
-
         configMessageLabel()
         configLogoImage()
     }
@@ -62,7 +61,6 @@ class GHFEmptyStateView: UIView {
     }
     
     private func setSnpConstraints() {
-        addSubview(messageLabel)
         messageLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self).offset(labelCenterYConstant)
             make.leading.equalTo(self).offset(40)
@@ -70,7 +68,6 @@ class GHFEmptyStateView: UIView {
             make.height.equalTo(200)
         }
         
-        addSubview(logoImageView)
         logoImageView.snp.makeConstraints { make in
             make.width.equalTo(self.snp.width).multipliedBy(1.3)
             make.height.equalTo(self.snp.width).multipliedBy(1.3)

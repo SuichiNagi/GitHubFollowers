@@ -23,9 +23,8 @@ class FavoriteViewCell: UITableViewCell {
     }
     
     private func config() {
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
-        
+        addSubviews(avatarImageView, usernameLabel)
+
         accessoryType = .disclosureIndicator
         
 //        setAutoLayoutConstraints()
