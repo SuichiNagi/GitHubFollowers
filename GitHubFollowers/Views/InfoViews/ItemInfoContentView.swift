@@ -9,8 +9,6 @@ import UIKit
 
 class ItemInfoContentView: UIView {
     
-    weak var delegate: UserInfoVCDelegate!
-    
     let padding: CGFloat = 20
 
     override init(frame: CGRect) {

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol FollowerItemViewDelegate: AnyObject {
+    func didTapGetFollowers(for user: UserModel)
+}
+
 class FollowerItemView: ItemInfoContentView {
+    
+    weak var delegate: FollowerItemViewDelegate!
     
     var user: UserModel!
     

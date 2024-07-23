@@ -8,13 +8,12 @@
 import UIKit
 
 protocol UserInfoVCDelegate: AnyObject {
-    func didTapGitHubProfile(for user: UserModel)
-    func didTapGetFollowers(for user: UserModel)
+    func didRequestFollowers(for username: String)
 }
 
 class UserInfoVC: UIViewController/*, UserInfoVCDelegate*/ {
     
-    weak var delegate: FollowerListVCDelegate!
+    weak var delegate: UserInfoVCDelegate!
     
     var itemViews: [UIView] = []
     
@@ -159,17 +158,7 @@ class UserInfoVC: UIViewController/*, UserInfoVCDelegate*/ {
     }()
 }
 
-extension UserInfoVC: UserInfoVCDelegate {
-    func didTapGitHubProfile(for user: UserModel) {
-        //Show Safari View Controller
-        guard let url = URL(string: userModel.htmlUrl) else {
-            presentGHFAlertOnMainThread(title: "Invalid URL", message: "url attached is invalid.", buttonTitle: "Ok")
-            return
-        }
-        
-        presentSafariVC(with: url)
-    }
-    
+extension UserInfoVC: FollowerItemViewDelegate {
     func didTapGetFollowers(for user: UserModel) {
         guard user.followers != 0 else {
             presentGHFAlertOnMainThread(title: "No followers", message: "This user has no followers.", buttonTitle: "Ok")
@@ -177,5 +166,16 @@ extension UserInfoVC: UserInfoVCDelegate {
         }
         delegate.didRequestFollowers(for: user.login)
         dismissVC()
+    }
+}
+
+extension UserInfoVC: RepoItemViewDelegate {
+    func didTapGitHubProfile(for user: UserModel) {
+        //Show Safari View Controller
+        guard let url = URL(string: userModel.htmlUrl) else {
+            presentGHFAlertOnMainThread(title: "Invalid URL", message: "url attached is invalid.", buttonTitle: "Ok")
+            return
+        }
+        presentSafariVC(with: url)
     }
 }

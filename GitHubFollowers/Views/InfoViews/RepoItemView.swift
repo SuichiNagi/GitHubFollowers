@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol RepoItemViewDelegate: AnyObject {
+    func didTapGitHubProfile(for user: UserModel)
+}
+
 class RepoItemView: ItemInfoContentView {
+    
+    weak var delegate: RepoItemViewDelegate!
     
     var user: UserModel!
     
