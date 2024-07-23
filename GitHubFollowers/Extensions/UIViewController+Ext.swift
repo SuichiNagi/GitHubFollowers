@@ -43,7 +43,7 @@ extension UIViewController {
 //        ])
         
         activityIndicator.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(view)
+            make.centerX.centerY.equalTo(containerView)
         }
         
         activityIndicator.startAnimating()
