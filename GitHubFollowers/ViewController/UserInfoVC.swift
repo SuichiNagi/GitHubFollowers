@@ -139,14 +139,12 @@ class UserInfoVC: UIViewController/*, UserInfoVCDelegate*/ {
     }()
     
     lazy var itemViewOne: RepoItemView = {
-        let view        = RepoItemView(user: userModel!)
-        view.delegate   = self
+        let view        = RepoItemView(user: userModel!, delegate: self)
         return view
     }()
     
     lazy var itemViewTwo: FollowerItemView = {
-        let view        = FollowerItemView(user: userModel!)
-        view.delegate   = self
+        let view        = FollowerItemView(user: userModel!, delegate: self)
         return view
     }()
     

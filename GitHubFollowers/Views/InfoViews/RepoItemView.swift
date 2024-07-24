@@ -17,9 +17,10 @@ class RepoItemView: ItemInfoContentView {
     
     var user: UserModel!
     
-    init(user: UserModel) {
+    init(user: UserModel, delegate: RepoItemViewDelegate) {
         super.init(frame: .zero)
         self.user = user
+        self.delegate = delegate
         
         configItems()
     }

@@ -17,9 +17,10 @@ class FollowerItemView: ItemInfoContentView {
     
     var user: UserModel!
     
-    init(user: UserModel) {
+    init(user: UserModel, delegate: FollowerItemViewDelegate) {
         super.init(frame: .zero)
         self.user = user
+        self.delegate = delegate
         
         configItems()
     }
