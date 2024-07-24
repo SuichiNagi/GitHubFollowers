@@ -11,7 +11,10 @@ protocol UserInfoVCDelegate: AnyObject {
     func didRequestFollowers(for username: String)
 }
 
-class UserInfoVC: UIViewController/*, UserInfoVCDelegate*/ {
+class UserInfoVC: UIViewController {
+    
+    let padding: CGFloat = 20
+    let itemHeight: CGFloat = 140
     
     weak var delegate: UserInfoVCDelegate!
     
@@ -58,61 +61,69 @@ class UserInfoVC: UIViewController/*, UserInfoVCDelegate*/ {
         }
     }
     
-    //MARK: Delegate
-//    func didTapGitHubProfile() {
-//        //Show Safari View Controller
-//        guard let url = URL(string: userModel.htmlUrl) else {
-//            presentGHFAlertOnMainThread(title: "Invalid URL", message: "url attached is invalid.", buttonTitle: "Ok")
-//            return
-//        }
-//        
-//        let safariVC = SFSafariViewController(url: url)
-//        safariVC.preferredControlTintColor = .systemGreen
-//        present(safariVC, animated: true)
-//    }
-//    
-//    func didTapGetFollowers() {
-//        //dismissVC
-//        //Tell follower list screen the new user
-//    }
-    
     func setUI() {
-        let padding: CGFloat = 20
-        let itemHeight: CGFloat = 140
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         
         itemViews = [userInfoHeaderView, itemViewOne, itemViewTwo, dateLabel]
         
+//        setAutoLayoutConstraint()
+        setSnpConstraint()
+    }
+    
+    func setAutoLayoutConstraint() {
+        scrollView.pinToEdgesAutoLayout(of: view)
+        contentView.pinToEdgesAutoLayout(of: scrollView)
+        
         for itemView in itemViews {
-            view.addSubview(itemView)
+            contentView.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
             
-//            NSLayoutConstraint.activate([
-//                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-//                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-//            ])
+            NSLayoutConstraint.activate([
+                itemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            ])
+        }
+        
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 600),
+            
+            userInfoHeaderView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            userInfoHeaderView.heightAnchor.constraint(equalToConstant: 180),
+            
+            itemViewOne.topAnchor.constraint(equalTo: userInfoHeaderView.bottomAnchor, constant: padding),
+            itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
+            itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: padding),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18)
+        ])
+    }
+    
+    func setSnpConstraint() {
+        scrollView.pinToEdgesSnp(of: view)
+        contentView.pinToEdgesAutoLayout(of: scrollView)
+        
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(scrollView)
+            make.height.equalTo(600)
+        }
+        
+        for itemView in itemViews {
+            contentView.addSubview(itemView)
+            itemView.translatesAutoresizingMaskIntoConstraints = false
             
             itemView.snp.makeConstraints { make in
-                make.leading.equalToSuperview().offset(padding)
-                make.trailing.equalToSuperview().offset(-padding)
+                make.leading.equalTo(contentView).offset(padding)
+                make.trailing.equalTo(contentView).offset(-padding)
             }
         }
         
-//        NSLayoutConstraint.activate([
-//            userInfoHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            userInfoHeaderView.heightAnchor.constraint(equalToConstant: 180),
-//            
-//            itemViewOne.topAnchor.constraint(equalTo: userInfoHeaderView.bottomAnchor, constant: padding),
-//            itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
-//            
-//            itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: padding),
-//            itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
-//            
-//            dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: padding),
-//            dateLabel.heightAnchor.constraint(equalToConstant: 18)
-//        ])
-    
         userInfoHeaderView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(contentView)
             make.height.equalTo(180)
         }
         
@@ -132,6 +143,15 @@ class UserInfoVC: UIViewController/*, UserInfoVCDelegate*/ {
         }
     }
 
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
+    
+    lazy var contentView: UIView = {
+        let contentView = UIView()
+        return contentView
+    }()
     
     lazy var userInfoHeaderView: UserInfoHeaderView = {
         let userInfoHead = UserInfoHeaderView(user: userModel!)
