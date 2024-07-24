@@ -24,21 +24,11 @@ class UserInfoHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setAvatarImage() {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] image in
-            guard let self = self else { return }
-            DispatchQueue.main.async() {
-                self.avatarImageView.image = image
-            }
-        }
-    }
-    
     func setUI() {
         addSubviews(avatarImageView, usernameLabel, nameLabel, locationImageView, locationLabel, bioLabel)
         
 //        setAutoLayoutConstraints()
         setSnpConstraints()
-        setAvatarImage()
     }
     
     func setAutoLayoutConstraints() {
@@ -119,6 +109,7 @@ class UserInfoHeaderView: UIView {
     
     lazy var avatarImageView: GHFAvatarImageView = {
         let imageView = GHFAvatarImageView(frame: .zero)
+        imageView.downloadImage(fromURL: user.avatarUrl)
         return imageView
     }()
     
