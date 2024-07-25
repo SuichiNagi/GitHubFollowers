@@ -14,12 +14,12 @@ class FollowerListVC: UIViewController {
     }
     
     var username: String!
-    var followers: [FollowerModel] = []
-    var filteredFollowers: [FollowerModel] = []
-    var page = 1
-    var hasMoreFollowers = true
-    var isSearching = false
-    var isLoadingMoreFollowers = false
+    var followers: [FollowerModel]          = []
+    var filteredFollowers: [FollowerModel]  = []
+    var page                                = 1
+    var hasMoreFollowers                    = true
+    var isSearching                         = false
+    var isLoadingMoreFollowers              = false
 
     var dataSource: UICollectionViewDiffableDataSource<Section, FollowerModel>!
     
@@ -73,6 +73,27 @@ class FollowerListVC: UIViewController {
         return collectionView
     }()
     
+    func updateUI(with followers: [FollowerModel]) {
+        //If followers count is less than 100 it will the hasMoreFollowers to false
+        if followers.count < 100 { self.hasMoreFollowers = false }
+        self.followers.append(contentsOf: followers)
+        
+        //If there's no follower it will show the emptyStateView
+        if self.followers.isEmpty {
+            DispatchQueue.main.async {
+                self.showEmptyStateView(with: "This user doesn't have any followers.", in: self.view)
+                return
+            }
+        }
+        
+        //if has followers show the search bar
+        DispatchQueue.main.async {
+            self.navigationItem.searchController = self.configSearchController
+        }
+        
+        self.updateData(on: self.followers)
+    }
+    
     func getFollowers(username: String, page: Int) {
         showLoadingView()
         isLoadingMoreFollowers = true
@@ -83,27 +104,8 @@ class FollowerListVC: UIViewController {
             
             switch result {
             case .success(let followers):
-                //If followers count is less than 100 it will the hasMoreFollowers to false
-                if followers.count < 100 { self.hasMoreFollowers = false }
-                self.followers.append(contentsOf: followers)
-                
-                //If there's no follower it will show the emptyStateView
-                if self.followers.isEmpty {
-                    let message = "This user doesn't have any followers."
-                    
-                    DispatchQueue.main.async {
-                        self.showEmptyStateView(with: message, in: self.view)
-                        return
-                    }
-                }
-                
-                //if has followers show the search bar
-                DispatchQueue.main.async {
-                    self.navigationItem.searchController = self.configSearchController
-                }
-                
-                self.updateData(on: self.followers)
-                
+            
+                self.updateUI(with: followers)
             case .failure(let error):
                 self.presentGHFAlertOnMainThread(title: "Oh No! There's an error", message: error.rawValue, buttonTitle: "Ok")
                 
@@ -134,6 +136,20 @@ class FollowerListVC: UIViewController {
         }
     }
     
+    func addUserToFavorites(user: UserModel) {
+        let favorite = FollowerModel(login: user.login, avatarUrl: user.avatarUrl)
+        
+        PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            
+            guard let error = error else {
+                self.presentGHFAlertOnMainThread(title: "Success", message: "Successfully added to the favorite lists", buttonTitle: "Ok")
+                return
+            }
+            self.presentGHFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
     @objc func addToFave() {
         showLoadingView()
         
@@ -143,17 +159,7 @@ class FollowerListVC: UIViewController {
             
             switch result {
             case .success(let user):
-                let favorite = FollowerModel(login: user.login, avatarUrl: user.avatarUrl)
-                
-                PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
-                    guard let self = self else { return }
-                    
-                    guard let error = error else {
-                        self.presentGHFAlertOnMainThread(title: "Success", message: "Successfully added to the favorite lists", buttonTitle: "Ok")
-                        return
-                    }
-                    self.presentGHFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                }
+                self.addUserToFavorites(user: user)
             case .failure(let error):
                 self.presentGHFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
@@ -210,6 +216,7 @@ extension FollowerListVC: UserInfoVCDelegate {
         self.username   = username
         title           = username
         page            = 1
+        
         followers.removeAll()
         filteredFollowers.removeAll()
         configCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)

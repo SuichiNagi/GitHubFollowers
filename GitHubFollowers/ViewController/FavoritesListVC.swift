@@ -23,23 +23,25 @@ class FavoritesListVC: UIViewController {
         getFave()
     }
     
+    func updateUI(with favorites: [FollowerModel]) {
+        if favorites.isEmpty {
+            self.showEmptyStateView(with: "No Favorites", in: self.view)
+        } else {
+            self.favorites = favorites
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.view.bringSubviewToFront(self.tableView)
+            }
+        }
+    }
+    
     func getFave() {
         PersistenceManager.retrieveFavorites { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let favorites):
-                
-                if favorites.isEmpty {
-                    self.showEmptyStateView(with: "No Favorites", in: self.view)
-                } else {
-                    self.favorites = favorites
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.view.bringSubviewToFront(self.tableView)
-                    }
-                }
-                
+                self.updateUI(with: favorites)
             case .failure(let error):
                 self.presentGHFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }

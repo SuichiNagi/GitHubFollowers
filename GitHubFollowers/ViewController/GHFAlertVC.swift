@@ -114,7 +114,7 @@ class GHFAlertVC: UIViewController {
     }()
     
     lazy var actionButton: GHFButton = {
-        let button = GHFButton(backgroundColor: .systemPink, title: "Ok")
+        let button = GHFButton(color: .systemPink, title: "Ok", systemImageName: "checkmark.circle")
         button.setTitle(buttonTitle ?? "Ok", for: .normal)
         button.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         return button

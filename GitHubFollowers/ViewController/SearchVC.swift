@@ -114,7 +114,7 @@ class SearchVC: UIViewController {
     }()
     
     lazy var getFollowersButton: GHFButton = {
-        let button = GHFButton(backgroundColor: .systemGreen, title: "Get Followers")
+        let button = GHFButton(color: .systemGreen, title: "Get Followers", systemImageName: "person.3")
         button.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         return button
     }()
