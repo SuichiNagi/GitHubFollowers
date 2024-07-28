@@ -36,5 +36,6 @@ class GHFButton: UIButton {
         
         configuration?.image = UIImage(systemName: systemImageName)
         configuration?.imagePadding = 6
+        configuration?.imagePlacement = .leading
     }
 }

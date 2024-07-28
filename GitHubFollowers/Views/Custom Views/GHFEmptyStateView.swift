@@ -40,10 +40,10 @@ class GHFEmptyStateView: UIView {
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
             messageLabel.heightAnchor.constraint(equalToConstant: 200),
             
-            logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: logoBottomConstant),
             logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
-            logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 170)
+            logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 170),
+            logoImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: logoBottomConstant)
         ])
     }
     
@@ -59,7 +59,7 @@ class GHFEmptyStateView: UIView {
             make.width.equalTo(self.snp.width).multipliedBy(1.3)
             make.height.equalTo(self.snp.width).multipliedBy(1.3)
             make.trailing.equalTo(self).offset(200)
-            make.bottom.equalTo(self).offset(logoBottomConstant)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(logoBottomConstant)
         }
     }
     

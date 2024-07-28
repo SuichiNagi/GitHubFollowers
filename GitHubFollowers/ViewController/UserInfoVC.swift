@@ -48,15 +48,16 @@ class UserInfoVC: UIViewController {
     }
     
     func getUserInfo() {
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let user):
+        Task {
+            do {
+                let user = try await NetworkManager.shared.getUserInfo(for: username)
                 self.userModel = user
-            case .failure(let error):
-                self.presentGHFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                break
+            } catch {
+                if let errorMessage = error as? ErrorMessage {
+                    presentGHFAlert(title: "Something went wrong", message: errorMessage.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentDefaultError()
+                }
             }
         }
     }
@@ -179,7 +180,7 @@ class UserInfoVC: UIViewController {
 extension UserInfoVC: FollowerItemViewDelegate {
     func didTapGetFollowers(for user: UserModel) {
         guard user.followers != 0 else {
-            presentGHFAlertOnMainThread(title: "No followers", message: "This user has no followers.", buttonTitle: "Ok")
+            presentGHFAlert(title: "No followers", message: "This user has no followers.", buttonTitle: "Ok")
             return
         }
         delegate.didRequestFollowers(for: user.login)
@@ -191,7 +192,7 @@ extension UserInfoVC: RepoItemViewDelegate {
     func didTapGitHubProfile(for user: UserModel) {
         //Show Safari View Controller
         guard let url = URL(string: userModel.htmlUrl) else {
-            presentGHFAlertOnMainThread(title: "Invalid URL", message: "url attached is invalid.", buttonTitle: "Ok")
+            presentGHFAlert(title: "Invalid URL", message: "url attached is invalid.", buttonTitle: "Ok")
             return
         }
         presentSafariVC(with: url)
