@@ -38,6 +38,7 @@
 		5FCDED2F2C2DBE7D000A534A /* ItemInfoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDED2E2C2DBE7D000A534A /* ItemInfoContentView.swift */; };
 		5FCDED312C2DCC4A000A534A /* RepoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDED302C2DCC4A000A534A /* RepoItemView.swift */; };
 		5FCDED332C2DCFAD000A534A /* FollowerItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCDED322C2DCFAD000A534A /* FollowerItemView.swift */; };
+		5FD4A9C22C58F6ED000787C3 /* FollowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD4A9C12C58F6ED000787C3 /* FollowerView.swift */; };
 		5FDCC8462C2C3EF00006FF87 /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCC8452C2C3EF00006FF87 /* UserInfoVC.swift */; };
 		5FDCC84A2C2C64A20006FF87 /* UserInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCC8492C2C64A20006FF87 /* UserInfoHeaderView.swift */; };
 		5FDCC84C2C2C65170006FF87 /* GHFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCC84B2C2C65170006FF87 /* GHFSecondaryTitleLabel.swift */; };
@@ -82,6 +83,7 @@
 		5FCDED2E2C2DBE7D000A534A /* ItemInfoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoContentView.swift; sourceTree = "<group>"; };
 		5FCDED302C2DCC4A000A534A /* RepoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoItemView.swift; sourceTree = "<group>"; };
 		5FCDED322C2DCFAD000A534A /* FollowerItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerItemView.swift; sourceTree = "<group>"; };
+		5FD4A9C12C58F6ED000787C3 /* FollowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerView.swift; sourceTree = "<group>"; };
 		5FDCC8452C2C3EF00006FF87 /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 		5FDCC8492C2C64A20006FF87 /* UserInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeaderView.swift; sourceTree = "<group>"; };
 		5FDCC84B2C2C65170006FF87 /* GHFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		5F008C1B2C24A56A00E4D0BD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5FD4A9C02C58F6CC000787C3 /* FollowerCell */,
 				5F008C1D2C24A59B00E4D0BD /* FollowerViewCell.swift */,
 				5F9DAFBF2C3303AD00035B77 /* FavoriteViewCell.swift */,
 			);
@@ -238,6 +241,14 @@
 				5F97B91C2C351B53004FB404 /* GHFTabBarController.swift */,
 			);
 			path = TabBarControllers;
+			sourceTree = "<group>";
+		};
+		5FD4A9C02C58F6CC000787C3 /* FollowerCell */ = {
+			isa = PBXGroup;
+			children = (
+				5FD4A9C12C58F6ED000787C3 /* FollowerView.swift */,
+			);
+			path = FollowerCell;
 			sourceTree = "<group>";
 		};
 		5FDCC8472C2C64630006FF87 /* InfoViews */ = {
@@ -411,6 +422,7 @@
 				5F8ED8882C24910600696303 /* NetworkManager.swift in Sources */,
 				5F8ED8772C246BB400696303 /* GHFBodyLabel.swift in Sources */,
 				5F97B91D2C351B53004FB404 /* GHFTabBarController.swift in Sources */,
+				5FD4A9C22C58F6ED000787C3 /* FollowerView.swift in Sources */,
 				5FDCC84C2C2C65170006FF87 /* GHFSecondaryTitleLabel.swift in Sources */,
 				5F862AA02C24228200003103 /* SceneDelegate.swift in Sources */,
 				5F8ED8702C24499000696303 /* GHFTextField.swift in Sources */,
