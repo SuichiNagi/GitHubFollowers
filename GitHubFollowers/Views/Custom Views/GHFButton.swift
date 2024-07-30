@@ -39,3 +39,8 @@ class GHFButton: UIButton {
         configuration?.imagePlacement = .leading
     }
 }
+
+//for new version iOS 17
+#Preview {
+    GHFButton(color: .blue, title: "Test Button", systemImageName: "pencil")
+}

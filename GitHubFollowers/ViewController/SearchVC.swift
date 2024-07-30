@@ -127,3 +127,8 @@ extension SearchVC: UITextFieldDelegate {
     }
 }
 
+// newer version only iOS 17
+#Preview {
+    SearchVC()
+}
+
