@@ -17,5 +17,5 @@ What I used in this project
 * CollectionViews using DiffableDataSource
 * SafariViewController, UITableView, UIStackView, DateFormatter
 * Downloading images asynchronously, NSCache, Persistence
-* Custom Views - Textfield, Label, Button, Image, EmptyState
+* Custom Views - Textfield, Label, Button, Image, EmptyState, Errors
 * Implement SwiftUI using UIHostingConfiguration for version iOS 16
