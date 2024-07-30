@@ -20,4 +20,4 @@ What I used in this project
 * SafariViewController, UITableView, UIStackView, DateFormatter
 * Downloading images asynchronously, NSCache, Persistence
 * Custom Views - Textfield, Label, Button, Image, EmptyState, Errors
-* Implement SwiftUI using UIHostingConfiguration for version iOS 16
+* Implement/Inject SwiftUI using UIHostingConfiguration for version iOS 16
